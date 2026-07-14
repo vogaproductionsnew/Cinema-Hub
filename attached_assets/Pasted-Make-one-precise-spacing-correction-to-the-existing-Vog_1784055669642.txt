@@ -1,0 +1,191 @@
+Make one precise spacing correction to the existing Voga Productions Hero section.
+
+Everything else is already correct.
+
+Do not redesign, rebuild, resize, replace, or modify any other section or component.
+
+CURRENT PROBLEM
+
+There is excessive vertical empty space between:
+
+1. The central chrome Voga Productions logo
+2. The rotating 3D video cylinder beneath it
+
+The logo and cylinder currently feel like two separate screens. Users must scroll before the cylinder becomes fully visible.
+
+REQUIRED RESULT
+
+The chrome logo and rotating cylinder must appear together as one unified Hero composition within the initial desktop viewport, matching the intended visual reference:
+
+- Chrome Voga Productions logo centered in the upper portion
+- Rotating cylinder directly beneath it
+- A controlled, premium gap between them
+- The upper section of the cylinder clearly visible immediately without scrolling
+- No large empty black area between the logo and cylinder
+
+Make only the smallest layout adjustments required.
+
+Inspect the existing Hero component and identify which properties are creating the excessive gap. Likely causes may include:
+
+- Hero min-height or fixed height
+- Excessive padding-top or padding-bottom
+- Large margin beneath the chrome logo
+- Cylinder wrapper top offset
+- Absolute positioning values
+- GSAP initial or final translateY values
+- Separate full-height wrappers
+- Flex justify-content spacing
+- Spacer elements
+- Viewport-height calculations
+
+Correct the actual cause rather than adding arbitrary negative margins everywhere.
+
+DESKTOP TARGET
+
+At 1440px and 1280px widths:
+
+- Keep the chrome logo centered near the upper-middle area below the navbar.
+- Position the cylinder immediately beneath the logo.
+- Use approximately 40px to 90px of visual separation between the bottom of the complete logo artwork and the visible top of the cylinder, depending on the logo PNG’s transparent padding.
+- The first row/top portion of the cylinder cards must be visibly present within the initial viewport.
+- Users should understand immediately that the logo and cylinder belong to the same Hero scene.
+- The complete Hero composition should fit naturally within approximately one viewport height below the navbar.
+- Avoid creating a second-screen effect.
+
+Do not make the cylinder overlap the logo.
+
+Do not crop the chrome logo.
+
+Do not crop the important visible portion of the cylinder.
+
+TRANSPARENT PNG PADDING
+
+The chrome PNG may contain transparent empty space inside the image canvas.
+
+Account for this carefully.
+
+Do not judge spacing only from the image element’s CSS box. Judge the spacing based on the visible chrome artwork.
+
+Where necessary:
+
+- Reduce the image wrapper’s bottom margin
+- Reduce excess line-height or container height
+- Use a controlled negative visual offset on the cylinder wrapper only if required
+- Keep the PNG proportionally scaled
+- Do not crop the PNG with object-fit: cover
+- Keep object-fit: contain
+
+HERO HEIGHT
+
+Do not keep multiple stacked 100vh or min-h-screen containers inside the Hero.
+
+The logo area and cylinder area should be part of one coordinated Hero layout.
+
+If the Hero currently uses a very large fixed height or min-height, reduce it carefully so the logo and cylinder occupy one cohesive initial screen.
+
+Do not remove the scroll animation.
+
+Do not shorten the page in a way that breaks later scroll-triggered effects.
+
+GSAP AND CYLINDER PRESERVATION
+
+Do not change:
+
+- Cylinder geometry
+- Cylinder radius
+- Video panel dimensions
+- Panel order
+- Rotation speed
+- Rotation direction
+- Perspective
+- Video URLs
+- Autoplay logic
+- IntersectionObserver logic
+- Mobile performance optimizations
+- GSAP animation identity
+- Scroll-linked rotation
+- Lenis configuration
+- Framer Motion behaviour
+
+If the cylinder uses GSAP translateY positioning, adjust only the minimum vertical starting position needed to bring it closer to the logo.
+
+Do not rewrite the animation timeline.
+
+MOBILE AND TABLET
+
+Do not blindly apply desktop spacing values to mobile.
+
+At 768px, 430px, and 390px:
+
+- Keep the chrome logo fully visible below the fixed navbar
+- Keep the cylinder within the viewport
+- Reduce excessive space between the logo and cylinder
+- Prevent overlap
+- Prevent horizontal overflow
+- Preserve touch controls and autoplay performance
+- Keep CTA buttons visible and tappable
+- Do not create clipping
+
+The desktop issue is the priority, but confirm mobile remains stable.
+
+STRICTLY DO NOT CHANGE
+
+Do not change:
+
+- Chrome logo URL
+- Chrome logo design
+- Navbar
+- Navbar logo
+- Footer
+- Partner section
+- Partner logo sizes
+- Portfolio
+- Explore All behaviour
+- About Us
+- Services
+- Contact details
+- Testimonials
+- FAQ
+- CTA section
+- Colours
+- Fonts
+- Video sources
+- Any existing text
+- Any other spacing outside the Hero
+- Any other animation or interaction
+
+Do not add new elements.
+
+Do not add arrows.
+
+Do not add a new container, card, border, background, or section.
+
+VALIDATION
+
+After fixing, test at:
+
+- 1440px
+- 1280px
+- 1024px
+- 768px
+- 430px
+- 390px
+
+Confirm:
+
+1. The chrome logo and cylinder appear together in the initial Hero viewport.
+2. The large empty black gap is removed.
+3. The cylinder is visibly present without requiring an initial scroll.
+4. The logo and cylinder do not overlap.
+5. The chrome logo remains crisp and uncropped.
+6. Cylinder geometry and rotation remain unchanged.
+7. Video playback remains unchanged.
+8. GSAP and Lenis behaviour remain unchanged.
+9. No horizontal overflow is introduced.
+10. No unrelated component or section is modified.
+
+At the end, report:
+
+- The exact file modified
+- The exact spacing, height, offset, margin, padding, or positioning values changed
+- Confirmation that no other section or animation was changed

@@ -78,13 +78,13 @@ export default function HeroSection() {
       ref={sectionRef}
       style={{
         position: 'relative',
-        minHeight: '115vh',
+        minHeight: '100vh',
         background: '#0a0a0a',
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'center',
         overflow: 'hidden',
-        padding: '120px 0 80px',
+        padding: '100px 0 40px',
         boxSizing: 'border-box',
         width: '100%',
       }}
@@ -105,7 +105,7 @@ export default function HeroSection() {
       }}>
 
         {/* Star + label */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '2rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '1.25rem' }}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="#c9a84c">
             <path d="M12 2l2.09 6.26L20 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l5.91-1.01z" />
           </svg>
@@ -120,7 +120,7 @@ export default function HeroSection() {
         </div>
 
         {/* Chrome Voga Productions logo — replaces text VOGA + PRODUCTIONS */}
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '2.5rem' }}>
+        <div data-hero-logo-wrap style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '-12rem' }}>
           <img
             src={CHROME_LOGO}
             alt="Voga Productions"
@@ -143,7 +143,7 @@ export default function HeroSection() {
           alignItems: 'center',
           justifyContent: 'center',
           width: '100%',
-          height: 'clamp(20rem, 46vw, 40rem)',
+          height: 'clamp(18rem, 36vw, 32rem)',
           marginBottom: '2.5rem',
         }}>
           {/* Pivot hub — its size doesn't affect visuals but must stay consistent */}
@@ -269,17 +269,31 @@ export default function HeroSection() {
 
       {/* Mobile overrides — keep cylinder within viewport */}
       <style>{`
+        @media (max-width: 1024px) {
+          /* Reduce negative margin at 1024px — PNG transparent area is proportionally smaller */
+          #home [data-hero-logo-wrap] {
+            margin-bottom: -7rem !important;
+          }
+        }
         @media (max-width: 768px) {
           /* Constrain cylinder card size on mobile so they don't overflow */
           #home [style*="translate3d"] {
             width: clamp(11rem, 56vw, 16rem) !important;
             height: clamp(11rem, 52vw, 15rem) !important;
           }
+          /* At tablet the PNG scales down — less transparent padding, smaller negative compensation */
+          #home [data-hero-logo-wrap] {
+            margin-bottom: -2rem !important;
+          }
         }
         @media (max-width: 480px) {
           #home [style*="translate3d"] {
             width: clamp(9rem, 52vw, 13rem) !important;
             height: clamp(9rem, 48vw, 12rem) !important;
+          }
+          /* At small mobile the PNG is very small — minimal negative offset */
+          #home [data-hero-logo-wrap] {
+            margin-bottom: -1rem !important;
           }
         }
       `}</style>
