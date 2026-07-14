@@ -17,14 +17,14 @@ const PARTNERS = [
   { alt: 'Partner logo 9', img: 'https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/sv%20companies%20logo.png' },
 ];
 
-// Repeat twice for seamless infinite loop — ticker-track CSS halves this
+// Repeated twice for seamless infinite loop — source data is exactly 9 logos
 const TRACK = [...PARTNERS, ...PARTNERS];
 
 export default function PartnersSection() {
   const labelRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const st = gsap.fromTo(labelRef.current,
+    gsap.fromTo(labelRef.current,
       { opacity: 0, y: 16 },
       { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: labelRef.current, start: 'top 88%' } }
     );
@@ -39,7 +39,7 @@ export default function PartnersSection() {
       borderBottom: '1px solid rgba(240,234,214,0.06)',
       overflow: 'hidden',
     }}>
-      {/* Label */}
+      {/* Section label */}
       <div style={{ textAlign: 'center', marginBottom: '52px' }}>
         <span ref={labelRef} style={{
           fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase',
@@ -51,27 +51,25 @@ export default function PartnersSection() {
 
       {/* Infinite ticker */}
       <div style={{ overflow: 'hidden', position: 'relative' }}>
-        {/* Fade edges */}
+        {/* Fade edge overlays */}
         <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '120px', background: 'linear-gradient(to right, #0a0a0a, transparent)', zIndex: 2, pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '120px', background: 'linear-gradient(to left, #0a0a0a, transparent)', zIndex: 2, pointerEvents: 'none' }} />
 
-        <div
-          className="ticker-track"
-          style={{ display: 'flex', alignItems: 'center', width: 'max-content' }}
-        >
+        <div className="ticker-track" style={{ display: 'flex', alignItems: 'center', width: 'max-content' }}>
           {TRACK.map((p, i) => (
             <div
               key={i}
+              data-partner-slot
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                padding: '0 clamp(32px, 4vw, 60px)',
                 flexShrink: 0,
                 borderRight: '1px solid rgba(240,234,214,0.08)',
-                /* Fixed-size container normalizes logos with differing transparent padding */
-                width: 'clamp(160px, 20vw, 240px)',
-                height: 'clamp(80px, 10vw, 120px)',
+                /* Larger containers: desktop 250×120, tablet 210×105, mobile 180×95 */
+                width: 'clamp(160px, 20vw, 250px)',
+                height: 'clamp(90px, 10vw, 120px)',
+                padding: '0 clamp(20px, 3vw, 36px)',
                 boxSizing: 'border-box',
               }}
             >
@@ -79,19 +77,24 @@ export default function PartnersSection() {
                 src={p.img}
                 alt={p.alt}
                 style={{
-                  maxHeight: 'clamp(48px, 8vw, 100px)',
+                  /* Larger visible logo: desktop up to 100px, mobile min 62px */
+                  maxHeight: 'clamp(62px, 9vw, 100px)',
                   maxWidth: '100%',
                   width: 'auto',
                   height: 'auto',
                   objectFit: 'contain',
                   filter: 'brightness(0) invert(1)',
-                  opacity: 0.55,
+                  opacity: 0.58,
                   display: 'block',
                   transition: 'opacity 0.25s ease',
                 }}
                 onMouseEnter={e => (e.currentTarget.style.opacity = '0.9')}
-                onMouseLeave={e => (e.currentTarget.style.opacity = '0.55')}
-                onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                onMouseLeave={e => (e.currentTarget.style.opacity = '0.58')}
+                onError={e => {
+                  // Hide the entire slot (container + image) so no blank box appears
+                  const slot = (e.target as HTMLImageElement).closest('[data-partner-slot]') as HTMLElement | null;
+                  if (slot) slot.style.display = 'none';
+                }}
               />
             </div>
           ))}

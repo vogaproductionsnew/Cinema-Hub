@@ -1,0 +1,420 @@
+You are making a precise visual refinement to the existing completed Voga Productions website.
+
+This is NOT a redesign, rebuild, rebrand, or template replacement.
+
+Before editing, inspect the exact existing Hero component, 3D cylinder structure, partner ticker component, responsive CSS, GSAP timelines, Framer Motion logic, Lenis scrolling, video playback logic, and mobile breakpoints.
+
+Make only the changes explicitly listed below.
+
+Do not change any Cloudflare R2 video URLs.
+
+Do not change the existing portfolio videos, hero videos, services, About Us content, contact details, navigation, footer, testimonials, FAQ, portfolio layout, or section order.
+
+Do not change the current animations, interactions, scroll effects, video behaviour, GSAP timing, Framer Motion values, Lenis configuration, cylinder rotation logic, or mobile menu behaviour.
+
+==================================================
+1. REPLACE THE LARGE “VOGA” HERO TEXT
+==================================================
+
+Current state:
+
+The Hero section currently contains a large text-based “VOGA” wordmark above the rotating 3D cylinder.
+
+Required change:
+
+Remove only the large text-based “VOGA” hero wordmark and its small “Productions” text underneath it.
+
+Replace that text treatment with the supplied chrome Voga Productions logo PNG.
+
+Use this logo source:
+
+[PASTE_CHROME_LOGO_URL_HERE]
+
+Important:
+
+- This chrome logo is only for the large central Hero identity.
+- Do not replace the white navbar logo.
+- Do not replace the footer logo.
+- Do not replace any other Voga logo elsewhere.
+- Keep the navbar exactly as it is.
+- Preserve the Hero section’s existing entrance animation.
+- Apply the same animation language to the chrome logo where practical.
+- The logo must remain crisp and proportionally scaled.
+- Use object-fit: contain.
+- Do not crop, stretch, squash, recolour, blur, glow excessively, or distort the PNG.
+- Do not recreate the logo with text.
+- Do not add a background card behind the logo.
+- Do not add a border around the logo.
+- Do not add decorative arrows.
+
+Suggested sizing:
+
+Desktop:
+- Width approximately clamp(360px, 42vw, 680px)
+- Maintain natural aspect ratio
+- Position centrally above the cylinder
+- Keep enough vertical separation so the logo and cylinder do not visually collide
+
+Tablet:
+- Width approximately clamp(300px, 58vw, 520px)
+
+Mobile:
+- Width approximately 72vw to 84vw
+- Maximum width approximately 340px
+- Keep the logo fully visible
+- Prevent clipping under the fixed navbar
+- Do not make the logo excessively tall
+
+Use the existing Hero composition as the source of truth. Adjust only the logo sizing and spacing required for a clean result.
+
+==================================================
+2. WIDEN THE HERO CYLINDER VIEWING AREA
+==================================================
+
+Current problem:
+
+On desktop, the rotating cylinder is constrained inside a relatively narrow rounded container, making the video panels appear smaller than necessary.
+
+Required visual result:
+
+- Make the Hero cylinder area substantially wider.
+- Extend it toward both sides of the viewport.
+- Do not make it fully edge-to-edge.
+- Preserve comfortable left and right margins.
+- Make the cylinder videos feel larger, more immersive, and more visible.
+- Remove the heavy visible box/card feeling around the cylinder.
+- Prefer no visible border or outline.
+- The cylinder should feel integrated directly into the Hero background.
+
+Desktop target:
+
+- Hero cylinder wrapper width approximately 88vw to 94vw
+- Maximum width approximately 1500px to 1650px
+- Preserve centered alignment
+- Use responsive horizontal padding
+- Avoid touching the browser edges
+- Allow the rotating video cards to occupy more screen width
+- Increase the apparent scale carefully without breaking the 3D geometry
+
+Large desktop target:
+- Use approximately 4vw to 6vw side breathing room
+
+Standard desktop target:
+- Use approximately 5vw to 8vw side breathing room
+
+Do not simply scale the entire Hero blindly.
+
+Inspect the current implementation and carefully adjust:
+
+- Hero content max-width
+- Cylinder viewport wrapper width
+- Perspective container width
+- Overflow clipping
+- Panel scale only if necessary
+- Cylinder radius only if necessary
+- Camera perspective only if necessary
+
+Preserve:
+
+- Existing number of cylinder panels
+- Existing panel order
+- Existing videos
+- Existing rotation direction
+- Existing rotation speed
+- Existing cylinder logic
+- Existing scroll-linked animation
+- Existing hover or pointer interaction
+- Existing GSAP timeline
+- Existing parallax behaviour
+- Existing mobile performance fixes
+
+Do not convert the cylinder into:
+
+- A normal carousel
+- A slider
+- A flat row
+- A grid
+- A Swiper component
+- A static collage
+
+==================================================
+3. REMOVE THE VISIBLE HERO BOX OUTLINE
+==================================================
+
+Current state:
+
+The Hero cylinder appears inside a large rounded box/card with a visible outline.
+
+Required change:
+
+- Remove the visible border or outline around the main cylinder container.
+- Remove any unnecessary card-like background that makes the cylinder look enclosed.
+- Keep the overall black cinematic background.
+- Keep subtle depth, shadows, gradients, or vignettes only if they already support the current look.
+- Preserve rounded clipping only if it is technically required for the cylinder animation.
+- If clipping is not required, remove the rounded enclosing shape.
+- Do not expose broken edges or overflowing video panels.
+
+The final Hero should feel open, wide, immersive, and cinematic rather than boxed-in.
+
+Do not add the arrows shown in the visual reference. Those arrows were only annotations indicating the desired width increase.
+
+==================================================
+4. KEEP MOBILE HERO STABLE
+==================================================
+
+Do not apply the desktop width expansion directly to mobile without adaptation.
+
+For screens below approximately 768px:
+
+- Preserve the current mobile Hero composition unless a small adjustment is required.
+- Keep the cylinder within the viewport.
+- Prevent horizontal overflow.
+- Prevent the enlarged desktop wrapper from causing cropped video panels.
+- Keep the fixed mobile navbar unobstructed.
+- Ensure the chrome Hero logo is fully visible.
+- Preserve touch behaviour.
+- Preserve existing mobile autoplay and performance optimizations.
+- Do not cause all Hero videos to play simultaneously.
+- Do not add new expensive effects.
+- Do not introduce a large blank area above or below the cylinder.
+
+At 430px and 390px widths:
+
+- Confirm no horizontal scrolling
+- Confirm no clipping
+- Confirm no overlap between the chrome logo, cylinder, buttons, and navbar
+- Confirm video cards remain readable
+- Confirm existing CTA buttons remain tappable
+
+==================================================
+5. ENLARGE PARTNER LOGOS AGAIN
+==================================================
+
+Current problem:
+
+The partner logos are still visually too small, especially on mobile.
+
+Increase their visible size more substantially.
+
+Important:
+
+Many PNG files may contain transparent padding inside the artwork. Compensate using consistent logo containers and sensible image sizing, but do not crop important logo content.
+
+Desktop:
+
+- Logo container width approximately 220px to 290px
+- Logo container height approximately 100px to 130px
+- Visible logo height approximately 80px to 110px where the artwork allows
+- Preserve object-fit: contain
+- Keep consistent visual balance
+
+Tablet:
+
+- Logo container width approximately 190px to 240px
+- Logo container height approximately 90px to 115px
+- Visible logo height approximately 70px to 95px
+
+Mobile:
+
+- Logo container width approximately 160px to 210px
+- Logo container height approximately 85px to 105px
+- Visible logo height approximately 62px to 85px
+- Keep the logos clearly readable
+- Do not reduce them to tiny marks
+- Do not create excessive empty vertical space
+
+Preserve:
+
+- Existing infinite ticker movement
+- Existing direction
+- Existing animation speed unless spacing changes require a minor proportional adjustment
+- Existing monochrome/inverted treatment
+- Existing section title
+- Existing black background
+- Existing responsive behaviour
+- Existing partner sequence
+
+Do not add visible company-name captions beneath the logos.
+
+==================================================
+6. REMOVE THE RANDOM EMPTY WHITE BOX
+==================================================
+
+Current problem:
+
+A blank white or grey rectangular box appears next to the Track7 logo in the partner section.
+
+This element is not one of the approved partner logos.
+
+Inspect the partner ticker data and rendered DOM.
+
+Remove:
+
+- Any broken image item
+- Any empty image source
+- Any placeholder logo
+- Any legacy hardcoded logo
+- Any object with an invalid URL
+- Any partner entry not included in the approved 9-logo list
+- Any blank fallback box
+- Any CSS placeholder element producing the rectangle
+
+The partner source data must contain only these 9 approved URLs:
+
+1.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/IMG_4262.PNG
+
+2.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/IMG_6632.png
+
+3.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/TITAN%20logo%20png%20-%20Edited.png
+
+4.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/bright%20logo.png
+
+5.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/c%20x%20no%20bg.png
+
+6.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/luxe%20horizon%20logo.png
+
+7.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/nayat%20logo.png
+
+8.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/orientica%20logo%20png.png
+
+9.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/sv%20companies%20logo.png
+
+The ticker may duplicate this exact 9-item array internally for seamless looping, but it must not contain any additional logo source.
+
+Add safe image-error handling:
+
+- If a logo fails to load, hide that individual logo item cleanly.
+- Do not display a white, grey, or broken placeholder rectangle.
+- Do not replace it with text.
+- Do not add a fallback random logo.
+- Avoid cumulative layout shift.
+
+==================================================
+7. DO NOT CHANGE ANYTHING ELSE
+==================================================
+
+Do not change:
+
+- Navbar logo
+- Footer logo
+- Cloudflare R2 video URLs
+- Hero video order
+- Portfolio video URLs
+- Portfolio layout
+- Portfolio Explore All behaviour
+- About Us text
+- About Us layout
+- Services
+- Service hover/click interaction
+- Contact details
+- Social links
+- Testimonials
+- FAQ
+- CTA section
+- Contact form
+- Footer content
+- Navigation structure
+- Section order
+- Brand colours
+- Fonts
+- General typography
+- GSAP animation timing
+- Framer Motion values
+- Lenis scrolling
+- Mobile autoplay logic
+- Video IntersectionObserver logic
+- Video performance optimizations
+- Desktop navigation
+- Mobile menu
+- Existing responsive fixes
+
+Do not add:
+
+- Arrows
+- Slider controls
+- Navigation buttons around the cylinder
+- A new carousel
+- A new Hero layout
+- A new background image
+- Extra copy
+- New animations
+- New services
+- New logos
+- New sections
+- Paid dependencies
+
+==================================================
+8. TECHNICAL IMPLEMENTATION RULES
+==================================================
+
+- Make the smallest controlled changes possible.
+- Reuse the existing component architecture.
+- Do not rewrite the Hero component from scratch.
+- Do not replace the cylinder component.
+- Do not rename existing routes.
+- Do not move files unnecessarily.
+- Avoid broad CSS refactoring.
+- Preserve existing class names where practical.
+- Keep all current video performance optimizations.
+- Clean up any new listeners or observers.
+- Do not introduce console errors.
+- Do not introduce hydration issues.
+- Do not introduce horizontal overflow.
+- Do not duplicate the logo data array.
+- Do not load the chrome logo multiple times unnecessarily.
+
+==================================================
+9. VALIDATION
+==================================================
+
+After editing, test at:
+
+- 1440px
+- 1280px
+- 1024px
+- 768px
+- 430px
+- 390px
+
+Confirm:
+
+1. The large text-based VOGA Hero title is removed.
+2. The chrome Voga Productions PNG is displayed instead.
+3. The navbar white logo is unchanged.
+4. The footer logo is unchanged.
+5. The chrome logo is crisp and not distorted.
+6. The cylinder container is noticeably wider on desktop.
+7. The cylinder videos appear larger and more immersive.
+8. There is no visible heavy box outline around the cylinder.
+9. No annotation arrows were added.
+10. The cylinder animation still works exactly as before.
+11. GSAP scroll behaviour remains unchanged.
+12. Lenis smooth scrolling remains unchanged.
+13. Mobile autoplay and pause logic still work.
+14. There is no horizontal overflow.
+15. Partner logos are substantially larger.
+16. Only the approved 9 partner logos are present.
+17. The random blank white/grey box is gone.
+18. Failed partner images do not display placeholder boxes.
+19. No video URL was changed.
+20. No unrelated section was modified.
+
+At the end, provide a concise report listing:
+
+- Every file modified
+- Exact Hero changes made
+- Exact partner ticker changes made
+- Confirmation that the cylinder geometry and animations were preserved
+- Confirmation that no video URL changed
+- Confirmation that no unrelated section changed
+- Any partner image URL that failed to load
