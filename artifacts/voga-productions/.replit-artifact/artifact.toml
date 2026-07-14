@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "Voga Productions"
+version = "1.0.0"
+id = "artifacts/voga-productions"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22114
+
+[services.development]
+run = "pnpm --filter @workspace/voga-productions run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/voga-productions", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/voga-productions/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22114"
+BASE_PATH = "/"

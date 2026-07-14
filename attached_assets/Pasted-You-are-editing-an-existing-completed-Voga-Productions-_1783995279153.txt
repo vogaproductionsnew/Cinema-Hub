@@ -1,0 +1,474 @@
+You are editing an existing completed Voga Productions website.
+
+This is not a redesign or rebuild.
+
+The current website design, visual identity, layout, responsive structure, GSAP animations, Framer Motion effects, Lenis smooth scrolling, rotating 3D hero cylinder, cursor effects, hover interactions, service interactions, typography, spacing, transitions, portfolio layout, navigation and footer must remain exactly as they are.
+
+Do not generate a new website template.
+
+Your task is limited to:
+
+1. Replace all broken Cloudinary media URLs.
+2. Replace the Voga logo.
+3. Replace the partner logos.
+4. Update the About Us content.
+5. Update the Services content.
+6. Update the contact information and social links.
+7. Remove every occurrence of “FC LLC.”
+8. Use “Voga Productions” only.
+9. Keep the portfolio uncategorized and in its existing visual layout.
+10. Preserve the existing hover or click interaction that reveals service descriptions.
+
+Before editing, inspect the complete codebase and identify every component, data array and constant containing media, company text, services, contact details or social links.
+
+Do not touch unrelated code.
+
+## Brand naming rule
+
+Use this name everywhere:
+
+Voga Productions
+
+Completely remove:
+
+Voga Productions FC LLC
+FC LLC
+
+Do not add legal suffixes anywhere in the website.
+
+## Voga logo
+
+Replace the current external Voga logo URL everywhere it appears, including the navbar, mobile navigation and footer, with:
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Logos/Voga_Logo_White.png
+
+Do not alter the logo dimensions, positioning, animation, object-fit behaviour or surrounding layout unless required to make the replacement display correctly.
+
+## Hero videos
+
+The rotating 3D hero cylinder must continue using exactly nine video panels.
+
+Replace the existing hero media sources with these URLs in this order:
+
+1.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/hero/hero-01.mp4.MOV
+
+2.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/hero/hero-02.mp4.MOV
+
+3.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/hero/hero-03.mp4.MOV
+
+4.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/hero/hero-04.mp4.mov
+
+5.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/hero/hero-05.mp4.MOV
+
+6.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/hero/hero-06.mp4.mov
+
+7.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/hero/hero-07.mp4.mov
+
+8.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/hero/hero-08.mp4.mov
+
+9.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/hero/hero-09.mp4.MOV
+
+Preserve:
+
+* The exact number of cylinder panels
+* Cylinder radius
+* Rotation direction
+* Rotation speed
+* GSAP timelines
+* Scroll behaviour
+* Panel geometry
+* Panel dimensions
+* Video autoplay
+* Muted playback
+* Looping
+* playsInline behaviour
+* Existing overlays and effects
+
+Do not replace the hero with embeds, iframes, posters, images or a normal video grid.
+
+## Portfolio videos
+
+Keep the current portfolio design and current uncategorized layout.
+
+Do not add category filters, tabs, category headings, search, pagination or a new gallery structure.
+
+Replace the existing portfolio video sources with these 19 URLs, in this order:
+
+1.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-01.mp4.mp4
+
+2.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-02.mp4.mp4
+
+3.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-03.mp4.mp4
+
+4.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-04.mp4.mp4
+
+5.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-05.mp4.MP4
+
+6.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-07.mp4.mp4
+
+7.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-10.mp4.mp4
+
+8.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-11.mp4.mp4
+
+9.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-13.mp4.mp4
+
+10.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-14.mp4.MP4
+
+11.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-15.mp4.MP4
+
+12.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-16.mp4.mp4
+
+13.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-17.mp4.MOV
+
+14.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-18.mp4.MP4
+
+15.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-19.mp4.mp4
+
+16.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-20.mp4.MP4
+
+17.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-21.mp4.MP4
+
+18.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-22.mp4.mp4
+
+19.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Videos/portfolio/portfolio-23.mp4.mp4
+
+If the current portfolio contains fewer than 19 media positions, expand only the existing data array or repeat the existing portfolio item structure. Preserve the established layout pattern, spacing, sizing, hover behaviour and animation logic.
+
+Do not create a redesigned portfolio component.
+
+If the current portfolio contains more than 19 positions, use these URLs sequentially and reuse them only where necessary.
+
+## Partner logos
+
+Replace the current partner logo sources with these nine URLs:
+
+1.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/IMG_4262.PNG
+
+2.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/IMG_6632.png
+
+3.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/TITAN%20logo%20png%20-%20Edited.png
+
+4.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/bright%20logo.png
+
+5.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/c%20x%20no%20bg.png
+
+6.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/luxe%20horizon%20logo.png
+
+7.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/nayat%20logo.png
+
+8.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/orientica%20logo%20png.png
+
+9.
+
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/sv%20companies%20logo.png
+
+The logos already contain their brand names.
+
+Do not add visible captions, brand names, labels or descriptions underneath them.
+
+Preserve the existing partner ticker, animation speed, direction, spacing, sizing, grayscale treatment, opacity, hover behaviour and responsive behaviour.
+
+Use neutral accessibility alt text such as:
+
+Partner logo 1
+Partner logo 2
+Partner logo 3
+
+Do not infer or display company names from filenames.
+
+## About Us
+
+Use this heading exactly:
+
+We shape stories that shape culture
+
+Use this body content:
+
+Voga Productions is a creative media production company specializing in cinematic storytelling, commercial filmmaking, photography, and high-impact visual communication. Based in the UAE, we partner with brands, businesses, and organizations to create compelling visual content that inspires audiences and strengthens brand identity.
+
+From concept development and creative direction to production and post-production, we deliver end-to-end media solutions with a commitment to creativity, precision, and exceptional quality. Every project is crafted with a strategic approach, combining artistic vision with technical excellence to produce content that is visually compelling, purpose-driven, and results-oriented.
+
+At Voga Productions, we believe every brand has a story worth telling, and we’re dedicated to bringing those stories to life through powerful visual experiences.
+
+Preserve the current About Us section layout, line breaks, text reveal effects, typography, animation triggers and responsive behaviour.
+
+Do not introduce additional About Us copy.
+
+## Services
+
+Preserve the existing service-description reveal interaction.
+
+Descriptions must continue appearing through the website’s current hover or click behaviour.
+
+Do not replace the interaction with permanently visible cards.
+
+Use exactly these ten services in this order:
+
+### 1. Cinematic Storytelling
+
+We craft emotionally driven films that transform ideas into compelling visual narratives. Every frame is designed to connect with audiences, strengthen brand identity, and leave a lasting impression.
+
+### 2. Brand Adfilms
+
+Premium commercial films that showcase your brand with cinematic quality and strategic storytelling. From concept development to final delivery, we create advertisements that elevate perception and drive engagement.
+
+### 3. Automotive Cinematics
+
+High-performance automotive films that capture power, precision, and design through dynamic camera movement, cinematic lighting, and advanced production techniques. Ideal for dealerships, manufacturers, and luxury automotive brands.
+
+### 4. Event Coverage & Live Streaming
+
+Professional multi-camera coverage for corporate events, product launches, exhibitions, conferences, and private functions. We document every key moment while delivering seamless live streaming for audiences anywhere in the world.
+
+### 5. Luxury Property Videos
+
+Architectural films that present residential, commercial, and luxury developments with sophistication. Using cinematic camera work, aerial perspectives, and refined editing, we highlight every detail that defines the property.
+
+### 6. Hospitality & F&B Content
+
+Visually rich content for hotels, restaurants, cafés, and luxury hospitality brands. We capture experiences, ambience, cuisine, and service in a way that inspires guests and strengthens your brand presence.
+
+### 7. Motion Graphics & Animation
+
+Creative motion design and animated visuals that simplify complex ideas and enhance storytelling. From logo animations and explainer videos to digital campaigns and corporate presentations, we create content that moves with purpose.
+
+### 8. Drone Cinematography
+
+Professional drone cinematography delivering breathtaking aerial perspectives for real estate, tourism, events, construction, and commercial productions while maintaining the highest safety and operational standards.
+
+### 9. Commercials & Branded Content
+
+Strategic commercial productions designed for television, digital platforms, and social media. We combine creative direction, cinematic production, and brand-focused messaging to create content that delivers measurable impact.
+
+### 10. Lifestyle, Product Photography & Videography
+
+Premium photography and video production that showcase products, people, and brands with elegance and authenticity. Whether for advertising, e-commerce, campaigns, or social media, we create visuals that elevate your brand and drive engagement.
+
+Preserve the existing service section’s:
+
+* Typography
+* Index numbering
+* Hover states
+* Click states
+* Active state
+* Description reveal
+* Dividers
+* Cursor behaviour
+* Spacing
+* Animation timing
+* Responsive layout
+
+If the current code has fewer than ten service entries, extend the existing data structure without changing the component architecture or visual design.
+
+## Contact information
+
+Replace all old contact information with:
+
+Email:
+[vogaproductions@gmail.com](mailto:vogaproductions@gmail.com)
+
+Primary phone:
++971 55 251 1761
+
+Secondary phone:
++971 55 418 0369
+
+WhatsApp display number:
++971 55 418 0369
+
+WhatsApp URL:
+https://wa.me/971554180369
+
+Instagram:
+https://www.instagram.com/vogaproductionsllc
+
+LinkedIn:
+https://www.linkedin.com/company/vogaproductions/
+
+YouTube:
+https://youtube.com/@vogaproductionsllc
+
+Ensure:
+
+* Email links use `mailto:vogaproductions@gmail.com`
+* Telephone links use `tel:+971552511761` and `tel:+971554180369`
+* WhatsApp uses `https://wa.me/971554180369`
+* Social links open in a new tab
+* External links include safe rel attributes
+* No old email, phone number, Instagram, LinkedIn or YouTube link remains anywhere
+* Contact information is updated in the contact section, footer, mobile menu and any CTA components
+
+Do not add an address unless one already exists and is intentionally retained.
+
+## Contact form
+
+Do not redesign or remove the existing contact form.
+
+If the form is currently visual-only, leave its behaviour unchanged for now.
+
+Do not add a paid service, backend, database or authentication system.
+
+Only update visible contact information and relevant links.
+
+## Media behaviour
+
+Every video must retain appropriate native video attributes:
+
+* autoPlay where currently used
+* muted where currently used
+* loop where currently used
+* playsInline
+* preload consistent with the current implementation
+* object-fit consistent with the current implementation
+
+Do not replace native video elements with Vimeo, YouTube or iframe embeds.
+
+Do not add browser controls unless the current website already uses them.
+
+Do not add audio autoplay.
+
+## Validation
+
+After making the changes:
+
+1. Run the project.
+2. Check the browser console.
+3. Confirm there are no React errors.
+4. Confirm there are no missing imports.
+5. Confirm all media URLs return successfully.
+6. Confirm all nine hero videos load.
+7. Confirm all 19 portfolio videos are correctly referenced.
+8. Confirm all nine partner logos load.
+9. Confirm the Voga logo loads in every location.
+10. Confirm no Cloudinary URL remains.
+11. Confirm no “FC LLC” text remains.
+12. Confirm no old contact information remains.
+13. Confirm the services reveal descriptions through the original hover or click interaction.
+14. Confirm the rotating hero animation remains unchanged.
+15. Confirm smooth scrolling remains unchanged.
+16. Confirm there is no horizontal overflow.
+
+Test these viewport widths:
+
+* 1440px
+* 1024px
+* 768px
+* 430px
+* 390px
+
+Do not make broad responsive redesigns. Fix only issues directly caused by replacing content or media.
+
+## Strict prohibitions
+
+Do not:
+
+* Rebuild the website
+* Change the theme
+* Change the colour palette
+* Change fonts
+* Change typography scale
+* Change the hero animation
+* Change the rotating cylinder
+* Change the portfolio composition
+* Add categories
+* Add category filters
+* Add new sections
+* Remove existing sections
+* Change GSAP timelines
+* Change Lenis configuration
+* Change Framer Motion animation values
+* Change cursor effects
+* Change navigation behaviour
+* Change footer design
+* Add random images
+* Add stock footage
+* Add fake project titles
+* Add partner captions
+* Add unnecessary copy
+* Add a database
+* Add authentication
+* Add a CMS
+* Add paid dependencies
+* Replace existing components with generated templates
+
+Make the smallest controlled code changes necessary.
+
+At the end, provide a concise report containing:
+
+1. Every file modified
+2. What was changed in each file
+3. Any media URL that failed to load
+4. Any `.MOV` file that appears incompatible with browser playback
+5. Confirmation that animations and interactions were preserved
