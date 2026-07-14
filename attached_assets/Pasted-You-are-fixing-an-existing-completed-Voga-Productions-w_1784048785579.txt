@@ -1,0 +1,467 @@
+You are fixing an existing completed Voga Productions website.
+
+This is NOT a redesign, rebuild, rebrand, or template replacement.
+
+Before editing, inspect the full codebase and identify the exact components responsible for:
+
+- Hero video cylinder
+- Portfolio video grid
+- “Explore All” portfolio button
+- Partner/client logo ticker
+- About Us section
+- Mobile video behaviour
+- GSAP animations
+- Framer Motion interactions
+- Lenis smooth scrolling
+
+Make controlled changes only to fix the problems listed below.
+
+Do not change any existing Cloudflare R2 URLs.
+
+Do not rename, move, replace, reorder, or re-upload any media files.
+
+Do not modify the brand colours, fonts, general visual identity, navigation, footer, hero geometry, GSAP timelines, Lenis scrolling, or existing cinematic design.
+
+==================================================
+1. FIX MOBILE VIDEO AUTOPLAY
+==================================================
+
+Current problem:
+
+- Videos are not autoplaying reliably on mobile.
+- The website is laggy and heavy on mobile.
+- Multiple videos may be loading or playing simultaneously.
+
+Fix all native video elements used in:
+
+- Hero cylinder
+- Portfolio
+- CTA video strip
+- Any other background video section
+
+Every autoplay video must use:
+
+- autoPlay
+- muted
+- loop
+- playsInline
+- preload="metadata"
+- no browser controls
+- no audio autoplay
+
+Also set the video element’s muted property programmatically where required:
+
+video.muted = true
+
+For React video elements, preserve the existing video styling and use equivalent attributes such as:
+
+autoPlay
+muted
+loop
+playsInline
+preload="metadata"
+
+Do not replace videos with Vimeo, YouTube, iframes, images, or new media URLs.
+
+==================================================
+2. OPTIMIZE MOBILE VIDEO PERFORMANCE
+==================================================
+
+The mobile website must not attempt to play every video simultaneously.
+
+Implement efficient video playback using IntersectionObserver.
+
+Required behaviour:
+
+- Videos only play when they are visible or close to entering the viewport.
+- Videos pause when they leave the viewport.
+- Portfolio videos below the fold must not begin downloading heavily on initial page load.
+- Use preload="metadata" for normal portfolio videos.
+- Use preload="auto" only where genuinely necessary for the first visible hero media.
+- Do not preload all 19 portfolio videos.
+- Do not remove portfolio videos.
+- Do not replace videos with static images.
+
+For the 9-panel hero cylinder:
+
+- Preserve all 9 panels.
+- Preserve the exact cylinder animation, dimensions, radius, rotation, spacing and GSAP behaviour.
+- On desktop, maintain the current visual behaviour.
+- On mobile, only allow the visible and immediately adjacent hero videos to actively play.
+- Pause non-visible hero panel videos.
+- Do not remove panels or replace the cylinder with a slider.
+- Do not simplify or redesign the hero.
+
+For the portfolio:
+
+- Desktop hover-to-play behaviour may remain.
+- On touch devices where hover is unavailable, play a portfolio video when it becomes substantially visible in the viewport.
+- Pause it when it leaves the viewport.
+- Do not allow many portfolio videos to play simultaneously.
+- Prefer only one visible portfolio video playing at a time on mobile.
+
+For the CTA video strip:
+
+- Preserve the existing moving strip animation.
+- Prevent every repeated video instance from decoding simultaneously.
+- Reuse the current sources but pause instances that are outside the viewport.
+- Keep the strip visually unchanged.
+
+Respect the user’s reduced-motion preference where practical, without removing the visual design for normal users.
+
+Do not install heavy new dependencies. Use native browser APIs and the existing React setup.
+
+==================================================
+3. HANDLE MOBILE AUTOPLAY FAILURES SAFELY
+==================================================
+
+Some existing assets use MOV or unusual file extensions.
+
+Do not change their URLs.
+
+Attempt normal muted inline autoplay.
+
+Use safe play handling:
+
+video.play().catch(() => {
+  // keep the website functional without console spam
+});
+
+Do not create infinite autoplay retry loops.
+
+Do not repeatedly call play() on every render.
+
+Avoid console errors and unhandled promise rejections.
+
+If a particular file cannot be decoded by the browser:
+
+- Leave its URL unchanged.
+- Report the exact failed URL at the end.
+- Do not replace it automatically.
+- Do not alter the website layout.
+
+==================================================
+4. FIX MOBILE LAG AND RENDERING
+==================================================
+
+Improve mobile performance without visibly redesigning the website.
+
+Required fixes:
+
+- Prevent unnecessary React re-renders.
+- Move static media arrays outside components where appropriate.
+- Memoize expensive components only where useful.
+- Clean up every GSAP animation, observer, listener and timer on component unmount.
+- Ensure IntersectionObserver instances are disconnected during cleanup.
+- Avoid duplicated scroll listeners.
+- Avoid duplicated Lenis requestAnimationFrame loops.
+- Avoid unnecessary video cloning or repeated video DOM creation.
+- Avoid loading the same video multiple times unless the existing visual strip genuinely requires repeated instances.
+- Remove no visual sections.
+- Preserve desktop quality.
+
+Do not globally disable animations on mobile.
+
+Do not remove GSAP, Framer Motion or Lenis.
+
+Do not reduce the website to a basic static layout.
+
+==================================================
+5. FIX PARTNER LOGOS
+==================================================
+
+Current problems:
+
+- Partner logos appear too small.
+- Unwanted or previously existing logos are still appearing.
+- Only the 9 supplied R2 partner logos should be shown.
+
+Find the current partner-logo data array and remove every old, placeholder, hardcoded, duplicated or unrelated logo.
+
+Use ONLY these 9 logo URLs, exactly as written:
+
+1.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/IMG_4262.PNG
+
+2.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/IMG_6632.png
+
+3.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/TITAN%20logo%20png%20-%20Edited.png
+
+4.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/bright%20logo.png
+
+5.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/c%20x%20no%20bg.png
+
+6.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/luxe%20horizon%20logo.png
+
+7.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/nayat%20logo.png
+
+8.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/orientica%20logo%20png.png
+
+9.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/sv%20companies%20logo.png
+
+Do not display visible brand-name captions underneath the logos.
+
+The names are already present inside the logo artwork.
+
+Increase the logo display size while preserving the ticker animation.
+
+Target behaviour:
+
+Desktop:
+- Logo containers should feel visually substantial.
+- Approximate logo image height: 70–100px, depending on each logo’s aspect ratio.
+- Approximate maximum width: 180–240px.
+- Preserve proportional scaling.
+- Use object-fit: contain.
+- Do not crop logos.
+
+Tablet:
+- Approximate logo image height: 60–85px.
+
+Mobile:
+- Approximate logo image height: 48–70px.
+- Keep enough spacing so logos do not overlap.
+- Do not make the ticker excessively tall.
+
+Normalize logos with different internal transparent padding using consistent containers rather than distorting the images.
+
+Preserve:
+
+- Existing ticker direction
+- Existing infinite movement
+- Existing spacing rhythm
+- Existing monochrome/inverted visual treatment where applicable
+- Existing hover behaviour
+- Existing section layout
+
+Remove duplicate logos from repeated source arrays.
+
+The ticker may visually repeat the same 9-item sequence for an infinite loop, but the source data must contain only the approved 9 logos.
+
+==================================================
+6. FIX THE “EXPLORE ALL” PORTFOLIO BUTTON
+==================================================
+
+Current problem:
+
+Clicking “Explore All” triggers only the decorative letter-forming animation or navigates incorrectly. It does not let users properly explore the complete portfolio.
+
+Make the button functional.
+
+Required behaviour:
+
+- Keep the current button design, animation, typography and hover effect.
+- Preserve the decorative letter-forming animation.
+- After the click interaction, reveal the complete portfolio within the existing Portfolio section.
+- Do not navigate to an empty anchor.
+- Do not navigate to an unrelated letter animation.
+- Do not open a broken route.
+- Do not create an external page.
+- Do not create a new design.
+
+The portfolio can initially display the same limited selection it currently shows.
+
+When the user clicks “Explore All”:
+
+1. Expand the existing portfolio section to show all 19 portfolio videos.
+2. Preserve the current varied grid design and established item pattern.
+3. Animate the newly revealed items using the existing animation language.
+4. Update the button text to “Show Less.”
+5. Keep the user positioned naturally within the portfolio section.
+6. Avoid abruptly jumping to the top of the page.
+
+When “Show Less” is clicked:
+
+1. Return to the original limited portfolio selection.
+2. Change the button text back to “Explore All.”
+3. Smoothly return the user near the beginning of the portfolio section if necessary.
+
+Accessibility:
+
+- Use a real button element.
+- Add aria-expanded.
+- Add aria-controls.
+- Ensure keyboard activation works.
+- Do not use href="#" for this interaction.
+
+Do not add categories, filters, tabs, pagination, project names, fake titles or a separate portfolio page.
+
+Use the existing 19 portfolio video URLs already present in the project.
+
+==================================================
+7. FIX THE ABOUT US TEXT LAYOUT
+==================================================
+
+Current problem:
+
+The About Us body is displayed as 3 separate paragraphs across a two-column layout, making it feel fragmented.
+
+Keep the heading exactly:
+
+We shape stories that shape culture
+
+Use the approved About Us text, but combine it into two balanced paragraphs.
+
+Paragraph 1:
+
+Voga Productions is a creative media production company specializing in cinematic storytelling, commercial filmmaking, photography, and high-impact visual communication. Based in the UAE, we partner with brands, businesses, and organizations to create compelling visual content that inspires audiences and strengthens brand identity.
+
+Paragraph 2:
+
+From concept development and creative direction to production and post-production, we deliver end-to-end media solutions with a commitment to creativity, precision, and exceptional quality. Every project combines artistic vision with technical excellence to produce content that is visually compelling, purpose-driven, and results-oriented. We believe every brand has a story worth telling, and we bring those stories to life through powerful visual experiences.
+
+Required layout:
+
+Desktop:
+- Use one clean content column or one visually balanced text block.
+- Do not split the body into two independent columns.
+- Set a readable maximum width.
+- Keep the text aligned with the existing section composition.
+- Preserve the section’s premium negative space.
+
+Tablet and mobile:
+- Use one column.
+- Avoid narrow text columns.
+- Ensure comfortable line length and spacing.
+- Prevent overflow.
+
+Preserve:
+
+- Existing About Us heading animation
+- Existing typography
+- Existing section entrance effects
+- Existing stats row, if present
+- Existing background and visual treatment
+- Existing section order
+
+Do not add extra paragraphs or new About Us content.
+
+==================================================
+8. MOBILE RESPONSIVE FIXES
+==================================================
+
+Audit the complete website at:
+
+- 1440px
+- 1024px
+- 768px
+- 430px
+- 390px
+
+Prioritize 430px and 390px.
+
+Fix:
+
+- Horizontal overflow
+- Video elements exceeding viewport width
+- Oversized text clipping
+- Partner logos appearing too small
+- Portfolio grid becoming cramped
+- Portfolio expansion on mobile
+- Buttons that are difficult to tap
+- Touch interactions that depend only on hover
+- Hero media performance
+- Service accordion usability
+- Contact links and spacing
+- Footer spacing
+- Navigation menu usability
+
+Minimum touch target:
+
+- Approximately 44 × 44px for interactive controls where practical.
+
+Do not broadly redesign the mobile website.
+
+Maintain the same visual identity and cinematic feel.
+
+==================================================
+9. DO NOT CHANGE THESE ITEMS
+==================================================
+
+Do not change:
+
+- Any Cloudflare R2 URL
+- Voga logo URL
+- Hero video URLs
+- Portfolio video URLs
+- Partner logo URLs
+- About Us heading
+- Services content
+- Contact information
+- Instagram link
+- LinkedIn link
+- YouTube link
+- WhatsApp link
+- Brand colours
+- Fonts
+- Desktop hero composition
+- 3D cylinder geometry
+- GSAP animation identity
+- Framer Motion identity
+- Lenis smooth scrolling identity
+- Navbar structure
+- Footer design
+- Testimonials content
+- FAQ content
+- Contact form behaviour
+- Existing section order
+
+Do not add:
+
+- A database
+- Authentication
+- CMS
+- Paid services
+- Paid dependencies
+- Vimeo
+- YouTube embeds
+- New stock images
+- Fake project titles
+- Portfolio categories
+- Random logos
+- Additional sections
+- A new website template
+
+==================================================
+10. VALIDATION
+==================================================
+
+After completing the changes:
+
+1. Run the website.
+2. Confirm the project builds successfully.
+3. Check the browser console for errors.
+4. Confirm every hero video URL remains unchanged.
+5. Confirm every portfolio video URL remains unchanged.
+6. Confirm only the approved 9 partner logos appear.
+7. Confirm logos are visibly larger on desktop and mobile.
+8. Confirm no unwanted partner logos remain.
+9. Confirm “Explore All” reveals all 19 portfolio videos.
+10. Confirm “Show Less” restores the initial portfolio state.
+11. Confirm the button no longer navigates to an empty or decorative anchor.
+12. Confirm About Us uses exactly two paragraphs in one content column.
+13. Confirm mobile videos use muted inline playback.
+14. Confirm offscreen videos pause.
+15. Confirm not all 19 portfolio videos preload or play at once.
+16. Confirm hero cylinder animation is unchanged.
+17. Confirm desktop animations remain unchanged.
+18. Confirm service hover/click interaction remains unchanged.
+19. Confirm no horizontal overflow at 430px and 390px.
+20. Confirm no old Cloudinary URLs are introduced.
+
+At the end, provide a concise report with:
+
+- Every file modified
+- The exact fix made in each file
+- Any video URL that failed to load
+- Any video file that loaded but could not be decoded
+- Confirmation that all existing R2 URLs were preserved
+- Confirmation that animations and visual identity were preserved

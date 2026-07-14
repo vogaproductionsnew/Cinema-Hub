@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { gsap } from 'gsap';
 
 const VIDEOS = [
@@ -13,25 +13,74 @@ const VIDEOS = [
   "https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/hero/hero-09.mp4.MOV",
 ];
 
-const ANGLE_STEP = 360 / 9; // 40° apart
+const ANGLE_STEP = 360 / 9;
+const isMobile = () => window.innerWidth <= 768;
 
 export default function HeroSection() {
   const cylinderRef = useRef<HTMLDivElement>(null);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const tweenRef = useRef<gsap.core.Tween | null>(null);
+  const observersRef = useRef<IntersectionObserver[]>([]);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const safePlay = useCallback((v: HTMLVideoElement | null) => {
+    if (!v) return;
+    v.muted = true;
+    v.play().catch(() => {});
+  }, []);
 
   useEffect(() => {
     if (!cylinderRef.current) return;
     gsap.set(cylinderRef.current, { rotateX: -1, rotateY: 0, rotateZ: 12 });
-    gsap.to(cylinderRef.current, {
+    tweenRef.current = gsap.to(cylinderRef.current, {
       rotateY: '+=360',
       duration: 28,
       ease: 'none',
       repeat: -1,
     });
-  }, []);
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced && tweenRef.current) {
+      tweenRef.current.pause();
+    }
+
+    const mobile = isMobile();
+
+    // On desktop, just autoplay all. On mobile, use IntersectionObserver per panel.
+    if (!mobile) {
+      videoRefs.current.forEach((v) => safePlay(v));
+    } else {
+      // On mobile: observe each video panel, play only when panel is intersecting
+      videoRefs.current.forEach((video, i) => {
+        if (!video) return;
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                safePlay(video);
+              } else {
+                video.pause();
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        obs.observe(video);
+        observersRef.current.push(obs);
+      });
+    }
+
+    return () => {
+      tweenRef.current?.kill();
+      observersRef.current.forEach((o) => o.disconnect());
+      observersRef.current = [];
+    };
+  }, [safePlay]);
 
   return (
     <section
       id="home"
+      ref={sectionRef}
       style={{
         position: 'relative',
         minHeight: '115vh',
@@ -41,9 +90,11 @@ export default function HeroSection() {
         justifyContent: 'center',
         overflow: 'hidden',
         padding: '120px 24px 100px',
+        boxSizing: 'border-box',
+        width: '100%',
       }}
     >
-      {/* Section-level gradient fades (top + bottom) */}
+      {/* Gradient fades */}
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '12rem', background: 'linear-gradient(180deg, #0a0a0a 0%, transparent 100%)', zIndex: 30, pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '12rem', background: 'linear-gradient(0deg, #0a0a0a 0%, transparent 100%)', zIndex: 30, pointerEvents: 'none' }} />
 
@@ -57,23 +108,24 @@ export default function HeroSection() {
         background: 'rgba(240,234,214,0.06)',
         position: 'relative',
         zIndex: 10,
+        boxSizing: 'border-box',
       }}>
         {/* Inner pill */}
         <div style={{
           width: '100%',
           backgroundColor: '#0d0d0d',
           borderRadius: '3.75rem',
-          padding: 'clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 3rem)',
+          padding: 'clamp(2rem, 4vw, 3.5rem) clamp(1rem, 3vw, 3rem)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           gap: '1.75rem',
-          overflow: 'clip',
+          overflow: 'hidden',
           position: 'relative',
+          boxSizing: 'border-box',
         }}>
-
           {/* Star + label */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', justifyContent: 'center' }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="#c9a84c">
               <path d="M12 2l2.09 6.26L20 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l5.91-1.01z" />
             </svg>
@@ -92,7 +144,7 @@ export default function HeroSection() {
             <h1 style={{
               fontFamily: "'Overused Grotesk', Arial, sans-serif",
               fontWeight: 900,
-              fontSize: 'clamp(72px, 14vw, 190px)',
+              fontSize: 'clamp(60px, 14vw, 190px)',
               letterSpacing: '-0.04em',
               lineHeight: 0.88,
               margin: 0,
@@ -104,7 +156,7 @@ export default function HeroSection() {
               VOGA
             </h1>
             <p style={{
-              fontSize: 'clamp(11px, 1.2vw, 14px)',
+              fontSize: 'clamp(10px, 1.2vw, 14px)',
               letterSpacing: '0.35em',
               textTransform: 'uppercase',
               color: 'rgba(240,234,214,0.4)',
@@ -123,9 +175,9 @@ export default function HeroSection() {
             alignItems: 'center',
             justifyContent: 'center',
             width: '100%',
-            height: '26rem',
+            height: 'clamp(18rem, 40vw, 26rem)',
           }}>
-            <div style={{ width: '18rem', height: '18rem', position: 'relative' }}>
+            <div style={{ width: 'clamp(10rem, 25vw, 18rem)', height: 'clamp(10rem, 25vw, 18rem)', position: 'relative' }}>
               <div
                 ref={cylinderRef}
                 style={{
@@ -143,23 +195,24 @@ export default function HeroSection() {
                       position: 'absolute',
                       top: 0,
                       left: 0,
-                      width: '21rem',
-                      height: '20rem',
+                      width: 'clamp(12rem, 22vw, 21rem)',
+                      height: 'clamp(12rem, 22vw, 20rem)',
                       borderRadius: '2rem',
                       overflow: 'hidden',
                       transformStyle: 'preserve-3d',
-                      transform: `rotateY(${i * ANGLE_STEP}deg) translate3d(0, 0, 30rem)`,
+                      transform: `rotateY(${i * ANGLE_STEP}deg) translate3d(0, 0, clamp(18rem, 32vw, 30rem))`,
                       border: '1px solid rgba(240,234,214,0.15)',
                       backgroundColor: '#111',
                     }}
                   >
                     <video
+                      ref={(el) => { videoRefs.current[i] = el; }}
                       src={src}
                       autoPlay
                       muted
                       loop
                       playsInline
-                      preload={i < 2 ? 'auto' : 'none'}
+                      preload={i === 0 ? 'auto' : 'metadata'}
                       style={{
                         width: '100%',
                         height: '100%',
@@ -174,22 +227,25 @@ export default function HeroSection() {
           </div>
 
           {/* CTA row */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
             <a
               href="#contact"
               style={{
                 display: 'inline-block',
-                padding: '13px 32px',
+                padding: '13px 28px',
                 background: '#c9a84c',
                 color: '#0a0a0a',
                 borderRadius: '50px',
-                fontSize: '13px',
+                fontSize: 'clamp(12px, 1.5vw, 13px)',
                 fontWeight: 700,
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
                 textDecoration: 'none',
                 fontFamily: "'Overused Grotesk', Arial, sans-serif",
                 transition: 'background 0.2s ease, transform 0.2s ease',
+                whiteSpace: 'nowrap',
+                minHeight: '44px',
+                lineHeight: '18px',
               }}
               onMouseEnter={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.transform = 'scale(1.03)'; }}
               onMouseLeave={e => { e.currentTarget.style.background = '#c9a84c'; e.currentTarget.style.transform = 'scale(1)'; }}
@@ -200,18 +256,21 @@ export default function HeroSection() {
               href="#portfolio"
               style={{
                 display: 'inline-block',
-                padding: '13px 32px',
+                padding: '13px 28px',
                 background: 'transparent',
                 color: 'rgba(240,234,214,0.7)',
                 border: '1px solid rgba(240,234,214,0.2)',
                 borderRadius: '50px',
-                fontSize: '13px',
+                fontSize: 'clamp(12px, 1.5vw, 13px)',
                 fontWeight: 500,
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
                 textDecoration: 'none',
                 fontFamily: "'Overused Grotesk', Arial, sans-serif",
                 transition: 'border-color 0.2s ease, color 0.2s ease',
+                whiteSpace: 'nowrap',
+                minHeight: '44px',
+                lineHeight: '18px',
               }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = '#c9a84c'; e.currentTarget.style.color = '#c9a84c'; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(240,234,214,0.2)'; e.currentTarget.style.color = 'rgba(240,234,214,0.7)'; }}
@@ -219,7 +278,6 @@ export default function HeroSection() {
               View Work ↓
             </a>
           </div>
-
         </div>
       </div>
 
