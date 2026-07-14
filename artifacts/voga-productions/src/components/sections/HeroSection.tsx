@@ -120,7 +120,7 @@ export default function HeroSection() {
         </div>
 
         {/* Chrome Voga Productions logo — replaces text VOGA + PRODUCTIONS */}
-        <div data-hero-logo-wrap style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '-12rem' }}>
+        <div data-hero-logo-wrap style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '-4.5rem', marginBottom: '-12rem' }}>
           <img
             src={CHROME_LOGO}
             alt="Voga Productions"
@@ -270,8 +270,9 @@ export default function HeroSection() {
       {/* Mobile overrides — keep cylinder within viewport */}
       <style>{`
         @media (max-width: 1024px) {
-          /* Reduce negative margin at 1024px — PNG transparent area is proportionally smaller */
+          /* Reduce both offsets at 1024px — PNG transparent area is proportionally smaller */
           #home [data-hero-logo-wrap] {
+            margin-top: -2rem !important;
             margin-bottom: -7rem !important;
           }
         }
@@ -281,8 +282,9 @@ export default function HeroSection() {
             width: clamp(11rem, 56vw, 16rem) !important;
             height: clamp(11rem, 52vw, 15rem) !important;
           }
-          /* At tablet the PNG scales down — less transparent padding, smaller negative compensation */
+          /* Mobile layout is already stable — no upward shift, keep existing bottom offset */
           #home [data-hero-logo-wrap] {
+            margin-top: 0 !important;
             margin-bottom: -2rem !important;
           }
         }
@@ -291,8 +293,8 @@ export default function HeroSection() {
             width: clamp(9rem, 52vw, 13rem) !important;
             height: clamp(9rem, 48vw, 12rem) !important;
           }
-          /* At small mobile the PNG is very small — minimal negative offset */
           #home [data-hero-logo-wrap] {
+            margin-top: 0 !important;
             margin-bottom: -1rem !important;
           }
         }

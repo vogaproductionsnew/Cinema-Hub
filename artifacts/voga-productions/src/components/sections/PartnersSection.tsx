@@ -65,6 +65,7 @@ export default function PartnersSection() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexShrink: 0,
+                background: 'transparent',
                 borderRight: '1px solid rgba(240,234,214,0.08)',
                 /* Larger containers: desktop 250×120, tablet 210×105, mobile 180×95 */
                 width: 'clamp(160px, 20vw, 250px)',
@@ -84,16 +85,24 @@ export default function PartnersSection() {
                   height: 'auto',
                   objectFit: 'contain',
                   filter: 'brightness(0) invert(1)',
-                  opacity: 0.58,
+                  /* Start invisible — only reveal after confirmed successful load */
+                  opacity: 0,
                   display: 'block',
+                  background: 'transparent',
                   transition: 'opacity 0.25s ease',
                 }}
+                onLoad={e => { e.currentTarget.style.opacity = '0.58'; }}
                 onMouseEnter={e => (e.currentTarget.style.opacity = '0.9')}
                 onMouseLeave={e => (e.currentTarget.style.opacity = '0.58')}
                 onError={e => {
-                  // Hide the entire slot (container + image) so no blank box appears
-                  const slot = (e.target as HTMLImageElement).closest('[data-partner-slot]') as HTMLElement | null;
-                  if (slot) slot.style.display = 'none';
+                  // Hide the entire slot so no blank box or border remains visible
+                  const img = e.currentTarget;
+                  const slot = img.closest('[data-partner-slot]') as HTMLElement | null;
+                  if (slot) {
+                    slot.style.display = 'none';
+                  } else {
+                    img.style.display = 'none';
+                  }
                 }}
               />
             </div>

@@ -1,0 +1,303 @@
+Make one final controlled refinement to the existing Voga Productions website.
+
+Everything is already correct except for:
+
+1. The vertical position of the chrome Hero logo and the 3D cylinder.
+2. The remaining blank white/grey box in the partner-logo ticker.
+
+This is NOT a redesign or rebuild.
+
+Do not modify any other section, content, animation, URL, responsive behaviour, navigation, typography, video playback logic, or visual identity.
+
+==================================================
+1. MOVE THE ENTIRE HERO COMPOSITION SLIGHTLY UP
+==================================================
+
+CURRENT STATE
+
+The chrome Voga Productions logo and the rotating 3D cylinder are now correctly grouped, but the complete composition is still positioned slightly too low inside the Hero section.
+
+The logo should move upward slightly.
+
+The cylinder must move upward by the same amount so the existing visual gap between the logo and cylinder remains unchanged.
+
+Do not move only the logo.
+
+Treat the chrome logo and cylinder as one coordinated visual group.
+
+REQUIRED RESULT
+
+- Move the chrome logo and the rotating cylinder upward together.
+- Keep their current relative spacing exactly the same.
+- Preserve the current logo size.
+- Preserve the current cylinder size and geometry.
+- Keep the full composition inside one Hero viewport.
+- Reduce the unnecessary empty space above the chrome logo.
+- Do not create a new gap below the logo.
+- Do not make the cylinder overlap the logo.
+- Do not move the composition behind the fixed navbar.
+
+DESKTOP TARGET
+
+At 1440px and 1280px widths:
+
+- Shift the full chrome-logo-and-cylinder composition upward by approximately 60px to 100px.
+- Start conservatively around 72px.
+- Judge the result visually from the visible logo artwork, not from transparent padding inside the PNG.
+- The composition should feel vertically balanced below the navbar.
+- The top of the cylinder should remain clearly visible in the initial viewport.
+- The logo and cylinder should read as one unified Hero scene.
+
+IMPLEMENTATION
+
+Inspect the Hero structure and apply the adjustment at the highest shared wrapper that contains both:
+
+- Chrome Hero logo
+- Cylinder viewport or cylinder wrapper
+
+Prefer adjusting one shared wrapper using one controlled value, for example:
+
+- translateY
+- top offset
+- margin-top
+- padding-top
+- flex alignment
+- Hero content positioning
+
+Do not add separate arbitrary negative margins to multiple child elements unless the structure makes a shared-wrapper adjustment impossible.
+
+Do not modify the GSAP transform values that control cylinder rotation.
+
+If GSAP already controls the shared wrapper’s transform, do not overwrite its transform directly. Instead:
+
+- Adjust the wrapper’s layout position through margin, inset, padding, or a nested positioning wrapper.
+- Avoid transform conflicts.
+- Preserve all existing animated transform properties.
+
+Do not change:
+
+- Chrome logo width or height
+- Cylinder radius
+- Cylinder perspective
+- Panel dimensions
+- Panel spacing
+- Rotation speed
+- Rotation direction
+- Video order
+- Hero video URLs
+- Scroll-linked movement
+- GSAP timelines
+- Lenis scrolling
+- Video autoplay or IntersectionObserver logic
+
+MOBILE AND TABLET
+
+Do not apply the full desktop upward shift blindly to smaller screens.
+
+At 1024px:
+- Use a smaller proportional upward adjustment if required.
+
+At 768px, 430px, and 390px:
+- Preserve the current stable mobile layout.
+- Only reduce excess top spacing if visibly necessary.
+- Keep the chrome logo below the fixed navbar.
+- Prevent navbar overlap.
+- Prevent logo/cylinder overlap.
+- Prevent horizontal overflow.
+- Preserve the mobile CTA buttons.
+- Preserve the current mobile video performance optimizations.
+
+Use responsive values rather than one fixed offset for every breakpoint.
+
+==================================================
+2. REMOVE THE REMAINING BLANK PARTNER BOX
+==================================================
+
+CURRENT PROBLEM
+
+A blank white or grey rectangular box still appears in the partner-logo ticker.
+
+It is not an approved partner logo and must be removed completely.
+
+Do not merely hide it visually using a black overlay.
+
+Find and remove the actual source of the blank item.
+
+INSPECT ALL POSSIBLE CAUSES
+
+Check for:
+
+- An invalid image URL
+- An empty src
+- A failed image request
+- A legacy logo entry
+- An unwanted placeholder object
+- A CSS background colour on an empty logo container
+- An img error fallback
+- A duplicated empty array item
+- A logo object with a missing url property
+- A placeholder div inside the ticker
+- A pseudo-element creating the rectangle
+- An image that failed to decode
+- A white PNG whose contents are not visible after inversion/filtering
+
+APPROVED PARTNER SOURCES
+
+The original partner-data array must contain only these 9 URLs:
+
+1.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/IMG_4262.PNG
+
+2.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/IMG_6632.png
+
+3.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/TITAN%20logo%20png%20-%20Edited.png
+
+4.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/bright%20logo.png
+
+5.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/c%20x%20no%20bg.png
+
+6.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/luxe%20horizon%20logo.png
+
+7.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/nayat%20logo.png
+
+8.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/orientica%20logo%20png.png
+
+9.
+https://pub-8de2b9e61a4b4edb850716f874d1f565.r2.dev/Partners/sv%20companies%20logo.png
+
+The ticker may duplicate this exact nine-item sequence for seamless looping.
+
+It must not include any tenth source, placeholder, empty string, null value, or legacy logo.
+
+IMAGE ERROR HANDLING
+
+For each partner image:
+
+- If the image fails to load, remove or hide that complete ticker item.
+- Do not leave the container visible.
+- Do not show a white or grey background.
+- Do not show a broken-image icon.
+- Do not replace it with text.
+- Do not reserve an empty visual slot.
+
+Use safe error handling such as setting the entire item to display:none or removing it from rendering state.
+
+Ensure the partner item wrapper has:
+
+- Transparent background
+- No fallback background colour
+- No placeholder rectangle
+- No visible empty border
+
+Preserve:
+
+- Existing logo size
+- Existing ticker speed
+- Existing ticker direction
+- Existing spacing
+- Existing monochrome/inverted treatment
+- Existing infinite loop
+- Existing section title
+- Existing responsive layout
+
+Do not reduce the partner logos.
+
+==================================================
+3. STRICTLY DO NOT CHANGE ANYTHING ELSE
+==================================================
+
+Do not change:
+
+- Chrome logo URL
+- Chrome logo design
+- Chrome logo size
+- Navbar
+- Navbar logo
+- Footer
+- Footer logo
+- Hero video URLs
+- Portfolio video URLs
+- Partner logo URLs
+- Hero cylinder geometry
+- Hero cylinder width
+- Hero cylinder scale
+- Hero animation
+- GSAP timing
+- Framer Motion values
+- Lenis configuration
+- Mobile autoplay logic
+- IntersectionObserver logic
+- Portfolio
+- Explore All behaviour
+- About Us
+- Services
+- Contact information
+- Testimonials
+- FAQ
+- CTA section
+- Contact form
+- Colours
+- Fonts
+- Text content
+- Section order
+- Any other spacing outside the Hero
+- Any other responsive styles
+
+Do not add:
+
+- Red marks
+- Arrows
+- Debug guides
+- New elements
+- New logos
+- New containers
+- New animations
+- New dependencies
+- New sections
+
+==================================================
+4. VALIDATION
+==================================================
+
+Test at:
+
+- 1440px
+- 1280px
+- 1024px
+- 768px
+- 430px
+- 390px
+
+Confirm:
+
+1. The chrome logo has moved slightly upward.
+2. The cylinder has moved upward by the same amount.
+3. The spacing between logo and cylinder is unchanged.
+4. The complete Hero composition feels vertically balanced.
+5. The Hero remains within one initial viewport.
+6. The navbar does not overlap the logo.
+7. The cylinder does not overlap the logo.
+8. The cylinder animation remains unchanged.
+9. No video URL changed.
+10. No horizontal overflow was introduced.
+11. The blank white/grey partner box is completely gone.
+12. Only the approved nine partner-logo URLs remain.
+13. Failed logos leave no empty box or placeholder.
+14. Partner ticker animation remains unchanged.
+15. No unrelated section or style was modified.
+
+At the end, report:
+
+- Every file modified
+- The exact shared Hero wrapper adjusted
+- The exact upward offset used for each breakpoint
+- The actual cause of the blank partner box
+- The exact fix applied to remove it
+- Confirmation that no video URL, animation, content, or unrelated section changed
